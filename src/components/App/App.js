@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTwitter } from '@fortawesome/free-brands-svg-icons';
+
 
 
 function App() {
@@ -35,7 +34,7 @@ const [author, setAuthor] = useState("");
         <h2 id="text" className="text">{quote}</h2>
         <p id="author" className="author">{author}</p>
         <div className="buttons">
-        <a href={`https://twitter.com/intent/tweet?text=${quote} - ${author}`} target='blank' id="tweet-quote"className='tweet-quote'  rel="noopener noreferrer"><FontAwesomeIcon icon={faTwitter} /></a>
+        <a href={`https://twitter.com/intent/tweet?text=${quote} - ${author}`} target='blank' id="tweet-quote"className='tweet-quote'  rel="noopener noreferrer">tw icon</a>
         <button id="new-quote" className='new-quote' onClick={fetchRandomQuote} >New Quote</button>
         </div>
       </div>
