@@ -1,53 +1,42 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTwitter } from '@fortawesome/free-brands-svg-icons';
+
 
 function App() {
   
-  
-  const myQuotes = [
-    {
-        quote: 'Man Shall Not Live on bread Alone',
-        author: 'Jesus'
-    },
-    {
-        quote: 'Wake Up Already!!',
-        author: 'Me'
-    },
-    {
-        quote: 'Code everyday sir',
-        author: 'The master'
-    },
-    {
-        quote: 'Believe in yourself',
-        author: 'You'
-    },
-    {
-      quote: 'To live is the rarest thing in the world. Most people exist, that is all.',
-      author: 'Oscar Wilde'
-    },
-    {
-      quote: 'That it will never come again is what makes life so sweet.',
-      author: 'Emily Dickinson'
-    }
-
-]
-
-
-const randomQuote = () => {
-  return myQuotes[Math.floor(Math.random()* myQuotes.length)];
-  
-}
-
 const [quote, setQuote] = useState("");
+const [author, setAuthor] = useState("");
+
+  //fetch random quote
+  const fetchRandomQuote = async () => {
+    try {
+      const response = await fetch('https://api.quotable.io/random');
+      if (!response.ok) {
+        throw new Error('Failed to fetch random quote');
+      }
+      const data = await response.json(); // Parse response in json format
+      setQuote(data.content);
+      setAuthor(data.author);
+    } catch (error) {
+      console.error(error);
+      //handle error e.g show error message
+    }
+  };
+  
+  useEffect(() => {
+    fetchRandomQuote();
+  }, []);
 
   return (
     <div className="App">
       <div className="wrapper" id="quote-box" >
-        <h2 id="text" className="text">{randomQuote().quote}</h2>
-        <p id="author" className="author">{randomQuote().author}</p>
+        <h2 id="text" className="text">{quote}</h2>
+        <p id="author" className="author">{author}</p>
         <div className="buttons">
-        <a href="https://publish.twitter.com/" target='blank' id="tweet-quote"className='tweet-quote'>twitter icon</a>
-        <button id="new-quote" className='new-quote' onClick={() => setQuote(randomQuote)}>New Quote</button>
+        <a href={`https://twitter.com/intent/tweet?text=${quote} - ${author}`} target='blank' id="tweet-quote"className='tweet-quote'  rel="noopener noreferrer"><FontAwesomeIcon icon={faTwitter} /></a>
+        <button id="new-quote" className='new-quote' onClick={fetchRandomQuote} >New Quote</button>
         </div>
       </div>
       <p className="credits"><em>By techsavvysos</em></p>
