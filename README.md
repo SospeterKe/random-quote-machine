@@ -1,9 +1,9 @@
-Random Quote Generator
+**Random Quote Generator**
 
 This is a simple web application that generates random quotes from an API and displays them on the screen. Users can click a button to fetch a new quote and see a new random quote displayed. The application is built using React and uses CSS for styling.
 
 
-Features
+**Features**
 
 Fetches random quotes from an API
 Displays the quote and author on the screen
