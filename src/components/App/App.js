@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-import { FaTwitter } from "react-icons/fa";
+import { FaTwitterSquare } from "react-icons/fa";
 
 
 function App() {
@@ -59,9 +59,9 @@ const [randomColor, setRandomColor] = useState("#ffadad");
             className='tweet-quote'  
             rel="noopener noreferrer"
             style={{color: randomColor,
-                    fontSize: 35
+                    fontSize: 45
                     }}
-            ><FaTwitter /></a>
+            ><FaTwitterSquare /></a>
         <button id="new-quote" className='new-quote' onClick={fetchRandomQuote} style={{backgroundColor: randomColor}}>New Quote</button>
         </div>
       </div>
